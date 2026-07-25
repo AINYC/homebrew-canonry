@@ -2,14 +2,14 @@ name: Bump formula
 
 on:
   # Trigger from the main canonry repo's publish workflow via repository_dispatch
-  # (event_type: "canonry-published", client_payload: { version: "2.4.7" }).
+  # (event_type: "canonry-published", client_payload: { version: "4.133.4" }).
   repository_dispatch:
     types: [canonry-published]
   # Manual fallback — pass the version explicitly.
   workflow_dispatch:
     inputs:
       version:
-        description: "canonry version to bump to (e.g. 2.4.7)"
+        description: "Canonry version to bump to (e.g. 4.133.4)"
         required: true
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          TARBALL_URL="https://registry.npmjs.org/@ainyc/canonry/-/canonry-${VERSION}.tgz"
+          TARBALL_URL="https://registry.npmjs.org/@canonry/canonry/-/canonry-${VERSION}.tgz"
 
           # Wait for the tarball to be available on the npm CDN — the
           # publish workflow can dispatch this before npm has propagated.
